@@ -32,7 +32,7 @@ const cli = join(directory, 'node_modules', 'weebhooklab', 'dist', 'server', 'cl
 const manifest = JSON.parse(await readFile(join(directory, 'node_modules', 'weebhooklab', 'package.json'), 'utf8'));
 assert.equal(manifest.bin.weebhooklab, 'dist/server/cli.js');
 await access(join(directory, 'node_modules', '.bin', process.platform === 'win32' ? 'weebhooklab.cmd' : 'weebhooklab'));
-assert.match(npm(['exec', '--offline', '--', 'weebhooklab', '--version'], directory), /^0\.1\.0\s*$/);
+assert.equal(npm(['exec', '--offline', '--', 'weebhooklab', '--version'], directory).trim(), manifest.version);
 assert.match(npm(['exec', '--offline', '--', 'weebhooklab', '--help'], directory), /--no-open/);
 assert.throws(() => execFileSync(process.execPath, [cli, '--port', '0'], { cwd: directory, stdio: 'pipe' }),
   (error) => error.status === 1 && !String(error.stdout).includes('started') && !String(error.stderr).includes(' at '));

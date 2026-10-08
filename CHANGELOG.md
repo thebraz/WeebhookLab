@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 — 2026-10-08
+
+### Fixed
+
+- Corrected the MIT copyright holder and package author to braz.
+
 ## 0.1.0 — 2026-10-08
 
 ### Added
