@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.2 — 2026-10-08
+
+### Fixed
+
+- Updated the README license paragraph to reflect the adopted MIT license and copyright holder braz.
+
 ## 0.1.1 — 2026-10-08
 
 ### Fixed

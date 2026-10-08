@@ -183,4 +183,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and review expectations, and [C
 
 ## License
 
-No license has been approved for this project yet. The manifest is `UNLICENSED` and `private: true`; public distribution remains blocked. MIT is a proposed option for the owner's approval, not an adopted license.
+Released under the [MIT License](LICENSE). Copyright (c) 2026 braz.
