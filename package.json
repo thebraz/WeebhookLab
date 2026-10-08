@@ -1,0 +1,76 @@
+{
+  "name": "weebhooklab",
+  "version": "0.1.0",
+  "description": "Local-first webhook capture, inspection, editable replay and debugging with persistent workspaces.",
+  "license": "MIT",
+  "author": "thebraz",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebraz/WeebhookLab.git"
+  },
+  "homepage": "https://github.com/thebraz/WeebhookLab",
+  "bugs": {
+    "url": "https://github.com/thebraz/WeebhookLab/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "weebhooklab": "dist/server/cli.js"
+  },
+  "files": [
+    "dist/server/",
+    "dist/shared/",
+    "dist/web/",
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "docs/images/*.jpg"
+  ],
+  "keywords": [
+    "webhook",
+    "webhooks",
+    "developer-tools",
+    "http",
+    "debugging",
+    "replay",
+    "request-inspector",
+    "mock-server",
+    "typescript",
+    "api-testing"
+  ],
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "tsx scripts/dev.ts",
+    "start": "node dist/server/index.js",
+    "lint": "eslint src scripts tests examples vite.config.ts",
+    "typecheck": "tsc -p tsconfig.server.json --noEmit && tsc -p tsconfig.web.json && tsc -p tsconfig.tools.json",
+    "test": "tsx --test tests/*.test.ts",
+    "test:package": "node scripts/package-test.mjs",
+    "demo": "node examples/demo.mjs",
+    "prepack": "npm run build",
+    "build": "npm run typecheck && tsc -p tsconfig.server.json && vite build"
+  },
+  "dependencies": {
+    "@fastify/static": "^10.1.5",
+    "fastify": "^5.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.36.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.44.0",
+    "vite": "^7.1.0"
+  }
+}

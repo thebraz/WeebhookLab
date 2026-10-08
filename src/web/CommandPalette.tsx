@@ -1,0 +1,10 @@
+import { useEffect, useRef, useState } from 'react';
+export interface Command { label: string; run: () => void; disabled?: boolean }
+export default function CommandPalette({ commands }: { commands: Command[] }) {
+  const dialog = useRef<HTMLDialogElement>(null); const input = useRef<HTMLInputElement>(null); const [query, setQuery] = useState('');
+  useEffect(() => { const handle = (key: KeyboardEvent) => { if ((key.ctrlKey || key.metaKey) && key.key.toLowerCase() === 'k') { key.preventDefault(); setQuery(''); dialog.current?.showModal(); input.current?.focus(); } };
+    document.addEventListener('keydown', handle); return () => document.removeEventListener('keydown', handle); }, []);
+  const visible = commands.filter((command) => command.label.toLowerCase().includes(query.toLowerCase()));
+  return <><button className="text-button" onClick={() => { setQuery(''); dialog.current?.showModal(); input.current?.focus(); }}>Commands · Ctrl+K</button><dialog ref={dialog} className="command-palette" aria-label="Command palette"><div className="section-heading"><h3>Commands</h3><button className="text-button" onClick={() => dialog.current?.close()}>Close · Esc</button></div><input ref={input} aria-label="Search commands" placeholder="Search commands…" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={(key) => { if (key.key === 'ArrowDown') { key.preventDefault(); dialog.current?.querySelector<HTMLButtonElement>('.command-option:not(:disabled)')?.focus(); } }} />
+    <div onKeyDown={(key) => { if (!['ArrowDown', 'ArrowUp'].includes(key.key)) return; key.preventDefault(); const buttons = Array.from(dialog.current?.querySelectorAll<HTMLButtonElement>('.command-option:not(:disabled)') ?? []); const index = buttons.indexOf(key.target as HTMLButtonElement); buttons[(index + (key.key === 'ArrowDown' ? 1 : -1) + buttons.length) % buttons.length]?.focus(); }}>{visible.map((command) => <button className="command-option" key={command.label} disabled={command.disabled} onClick={() => { dialog.current?.close(); command.run(); }}>{command.label}</button>)}</div>{!visible.length && <p className="muted">No commands found.</p>}</dialog></>;
+}

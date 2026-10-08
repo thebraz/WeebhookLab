@@ -1,0 +1,15 @@
+node_modules/
+dist/
+data/
+*.log
+.release-validation/
+*.tgz
+.env
+.env.*
+!.env.example
+.npmrc
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+PROJECT_CONTEXT.md
