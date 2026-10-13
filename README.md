@@ -2,7 +2,7 @@
 
 A local-first TypeScript tool for capturing, inspecting, replaying, comparing, and debugging webhooks. It runs an HTTP capture endpoint and a React inspector on one port, with persistent SQLite storage and no external services.
 
-**0.1.0 release candidate. Not published to npm.** The package remains private and unlicensed until the owner approves a license and supplies the public repository URL. The interface is in Brazilian Portuguese.
+**Version 0.1.2**, available on [npm](https://www.npmjs.com/package/weebhooklab) under the [MIT license](LICENSE). The interface and CLI use English.
 
 ## Screenshots
 
@@ -40,7 +40,16 @@ curl -X POST http://127.0.0.1:5050/hooks/test \
 
 The empty inspector also provides a working PowerShell example and a Copy action. Capture does not need a valid JSON body.
 
-## Install the local release package
+## Install from npm
+
+```sh
+npm install -g weebhooklab@0.1.2
+weebhooklab --no-open
+```
+
+To run without a global installation, use `npx weebhooklab@0.1.2 --no-open`.
+
+## Build a local package
 
 Build and create the distribution:
 
@@ -51,13 +60,11 @@ npm pack
 Install the resulting tarball outside the source directory:
 
 ```sh
-npm install -g /path/to/weebhooklab-0.1.0.tgz
+npm install -g /path/to/weebhooklab-0.1.2.tgz
 weebhooklab --no-open
 ```
 
-On Windows, use the tarball's actual path, for example `npm install -g '.\weebhooklab-0.1.0.tgz'`. The installed command opens the browser by default; `--no-open` disables that action. If browser opening is unavailable, use the printed dashboard URL.
-
-After an authorized npm publication, the intended commands are `npx weebhooklab` and `npm install -g weebhooklab`. They are publication targets, not an installation path currently offered by this project. An npm registry lookup on 2026-10-08 returned 404 for this name; this does not reserve the name or guarantee publish permission.
+On Windows, use the tarball's actual path, for example `npm install -g '.\weebhooklab-0.1.2.tgz'`. The installed command opens the browser by default; `--no-open` disables that action. If browser opening is unavailable, use the printed dashboard URL.
 
 ## Capture and inspection
 
@@ -167,7 +174,7 @@ Tests use local receivers and temporary databases for capture bytes, invalid con
 
 The production build, installed CLI, and browser workflows were exercised on Windows with Node 22.14. macOS/Linux data-directory selection has unit coverage; native execution and automatic browser opening on those platforms have not been verified.
 
-GitHub Actions defines Windows install, lint, typecheck, tests, and package validation. The workflow runs after the project is added to a repository and pushed; there is no publishing or deployment step.
+The [GitHub Actions workflow](https://github.com/thebraz/WeebhookLab/blob/main/.github/workflows/ci.yml) runs Windows installation, lint, type checking, tests, and package validation on pushes and pull requests. Completed results are available in [Actions](https://github.com/thebraz/WeebhookLab/actions); CI does not publish packages.
 
 ## Examples
 
@@ -179,7 +186,7 @@ npm run demo
 
 For another local port: `npm run demo -- http://127.0.0.1:8080/hooks/demo`. The script uses Node's built-in HTTP client, sends only synthetic data to loopback, and adds ordinary captures to the active workspace. It needs no credentials or external receiver.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and review expectations, and [CHANGELOG.md](CHANGELOG.md) for the initial candidate entry.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and review expectations, and [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## License
 
