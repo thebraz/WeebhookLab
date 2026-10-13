@@ -13,3 +13,7 @@ data/
 *.db
 *.db-*
 PROJECT_CONTEXT.md
+AGENTS.md
+.agents/
+.claude/
+CLAUDE.md
